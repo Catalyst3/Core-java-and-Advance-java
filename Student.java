@@ -1,32 +1,26 @@
-
-public class Student 
+package Interface;
+interface Student1
 {
-	void student1()
+	void show();
+}
+interface Student2 extends Student1
+{
+	void show();
+}
+class SchoolResult implements Student2
+{
+	public void show()
 	{
-		System.out.println("Aditya");
-		System.out.println("Country:India");
-			
-	}
-	void student2()
-	{
-		System.out.println("Sam");
-		System.out.println("Country:USA");
-	}
-	void student3()
-	{
-		System.out.println("Anand");
-		System.out.println("Country:Nepal");
-	}
-	void student4()
-	{
-		System.out.println("Joe");
-		System.out.println("Country:UK");
-	}
-	public static void main(String args[])
-	{
-		Student details = new Student();
-		details.student1();
-		details.student2();	
+		System.out.println("Displayed");
 	}
 }
-
+public class Student 
+{
+	public static void main(String args[])
+	{
+		Student1 student1 = new SchoolResult();
+		student1.show();
+		Student2 student2 = new SchoolResult();
+		student2.show();
+	}	
+}
