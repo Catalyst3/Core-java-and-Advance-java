@@ -1,77 +1,67 @@
-/*3. Define an interface called Calculatable with two methods: double calculateArea() and double calculatePerimeter(). 
- * Implement this interface in three classes: Rectangle, Circle, and Triangle. Each class should provide its own implementation of the area 
- * and perimeter calculations. Create objects of all three classes and invoke their respective calculation methods.*/
-package Example;
-interface Calculatable
+/*Create a class called Rectangle with private instance variables length (double) and width (double). 
+ * Implement getter and setter methods for both variables. Additionally, add a public method called calculateArea that returns the area of the 
+ * rectangle (length * width). Ensure that the setter methods validate that both length and width are positive values, and if not, set them to 0.*/
+package EncapExample;
+
+import java.util.Scanner;
+
+class Rectangle
 {
-	double calculateArea();
-	double calculatePerimeter();
-}
-class Rectangles implements Calculatable
-{
-	int side1 = 12, side2 = 5;
-	double area,perimeter;
+	private double length;
+	private double width;
+	public void setLength(double length)
+	{
+		if (length<=0)
+		{
+			length=0;
+			this.length=length;
+		}
+		else
+		{
+			this.length = length;
+		}
+		
+	}
+	public double getLength()
+	{
+		return length;
+	}
+	public void setWidth(double width)
+	{
+		if (width<=0)
+		{
+			width=0;
+			this.width=width;
+		}
+		else 
+		{
+			this.width = width;
+		}	
+	}
+	public double getWidth()
+	{
+		return width;
+	}
 	public double calculateArea()
 	{
-		area = side1*side2;
+		double area=0;
+		area= length*width;
 		return area;
 	}
-	public double calculatePerimeter()
-	{
-		perimeter = side1+side2;
-		return perimeter;
-	}
 }
-class Circles implements Calculatable
-{
-	double area,perimeter;
-	int radius=12;
-	public double calculateArea()
-	{
-		area = 2*3.14*radius*radius;
-		return area;
-	}
-	public double calculatePerimeter()
-	{
-		perimeter = 2*3.14*radius;
-		return perimeter;
-	}
-}
-class Triangle implements Calculatable
-{
-	double area, perimeter;
-	int base=12,height=5;
-	int side1=12,side2 =12,side3=12;
-	public double calculateArea()
-	{
-		area = 0.5*base*height;
-		return area;
-	}
-	public double calculatePerimeter()
-	{
-		perimeter = side1+side2+side3;
-		return perimeter;
-	}
-}
-public class HardLevel 
-{
+public class HardLevel {
+
 	public static void main(String[] args) 
 	{
-		Calculatable rectangles = new Rectangles();
-		double a = rectangles.calculateArea();
-		System.out.println("Area of rectangle "+a);
-		double b = rectangles.calculatePerimeter();
-		System.out.println("Perimeter of Rectangle "+b);
-		Calculatable circles = new Circles();
-		double c = circles.calculateArea();
-		System.out.println("Area of Triangle "+c);
-		double d = circles.calculatePerimeter();
-		System.out.println("Perimeter of Triangle "+d);
-		Calculatable triangle = new Triangle();
-		double x = triangle.calculateArea();
-		System.out.println("Area of Triangle "+x);
-		double y = triangle.calculatePerimeter();
-		System.out.println("Perimeter of Triangle "+y);	
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter length of Rectangle ");
+		double length = sc.nextDouble();
+		System.out.println("Enter width of Rectangle");
+		double width = sc.nextDouble();
+		Rectangle rectangle = new Rectangle();
+		rectangle.setLength(length);
+		rectangle.setWidth(width);
+		double area = rectangle.calculateArea();
+		System.out.println("Area of Rectangle is "+area);
 	}
-
 }
