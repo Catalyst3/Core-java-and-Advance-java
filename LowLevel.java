@@ -1,47 +1,38 @@
-/*Create a class called BankAccount with private instance variables accountNumber (String) and balance (double). 
- * Implement public setter and getter methods for both variables. Additionally, create a method called deposit that takes a
- *  parameter amount (double) and adds it to the balance.*/
-package EncapExample;
+package ExceptionHandlingExamples;
+/*Create a program that prompts the user to enter their age. If the age is less than 13, throw a custom exception called
+ * UnderAgeException with the message "You must be at least 13 years old to use this program." Handle the exception and display an appropriate
+ * error message.*/
 import java.util.Scanner;
-class BankAccount
-{
-	private int accountNo;
-	private double balance;
-	public void setAccountNo(int accountNo)
+public class LowLevel {
+	public static void main(String[] args)
 	{
-		this.accountNo = accountNo;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Yor Age");
+		try
+		{
+			int age = sc.nextInt();
+			checkAge(age);	
+		}catch(UnderAgeException msg)
+		{
+			System.out.println("Reason  :"+msg);
+		}	
 	}
-	public int getAccountNo()
+	public static void checkAge(int age) throws UnderAgeException
 	{
-		return accountNo;
-	}
-	public void setBalance(double balance)
-	{
-		this.balance = balance;
-	}
-	public double getBalance()
-	{
-		return balance;
-	}
-	 void deposit(double a)
-	{
-		double amount = a;
-		balance += amount; 
+		if (age<13)
+		{
+			throw new UnderAgeException("Your Under Age");
+		}
+		else
+		{
+			System.out.println("You can Use this Program");
+		}
 	}
 }
-public class LowLevel 
+class UnderAgeException extends Exception
 {
-	public static void main(String args[])
+	public UnderAgeException(String msg)
 	{
-		BankAccount bankAccount = new BankAccount();
-		
-		bankAccount.setAccountNo(18010);
-		bankAccount.setBalance(10000.0);
-		System.out.println("Enter amount you want to deposit");
-		Scanner sc = new Scanner(System.in);
-		double amount = sc.nextDouble();
-		bankAccount.deposit(amount);
-		System.out.println("Balance After Deposit is :"+bankAccount.getBalance());
-		
+		super(msg);
 	}
 }

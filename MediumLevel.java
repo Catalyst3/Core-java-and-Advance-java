@@ -1,55 +1,59 @@
-/*Design a class called Student to represent a student's information. The class should have private 
- * instance variables name (String), age (int), and grade (int). Implement the necessary getter and setter methods.
- *  Add a public method called promote that increases the grade of the student by 1. However, the grade should only be 
- *  updated if it is less than or equal to 12.*/
-package EncapExample;
+package ExceptionHandlingExamples;
+/*
+ * Write a program that simulates a voting system. Create a class called Voter with attributes such as name and age. 
+ * Implement a method registerVote() that throws a custom exception InvalidVoteException if the voter's age is less than 18. 
+ * Handle the exception and display a message stating that the voter is not eligible to vote.*/
 import java.util.Scanner;
-class Student
+class InvalidVoteException extends Exception
 {
-	private short age;
-	private int grade;
-	public void setAge(short age)
+	public InvalidVoteException(String msg)
 	{
-		this.age = age;
-	}
-	public short getAge()
-	{
-		return age;
-	}
-	public void setGrade(int grade)
-	{
-		this.grade=grade;
-	}
-	public int getGrade()
-	{
-		return grade;
-	}
-	public void promote()
-	{
-		if (grade<=12)
-		{
-			grade++;
-			System.out.println("Your Grades are Promoted "+grade);
-		}
-		else
-		{
-			System.out.println("Your Grades are Not Promoted "+grade);
-		}
-		
-	 System.out.println("Your Age is "+age);
+		super(msg);
 	}
 }
-public class MediumLevel 
+class Voter
 {
-	public static void main(String args[])
+	static String name;
+    static int age;
+	public static void registerVote(String name,int age)throws InvalidVoteException
+	{
+		Voter.name=name;
+		if (age<18)
+		{
+			throw new InvalidVoteException("Your Under Age");
+		}
+		else	
+		{
+			System.out.println("You can vote");
+		}
+	}
+}
+class ShowInfo extends Voter
+{
+	static void showDetailsOfVoter()
+	{
+		System.out.println("Voter Name: "+name);
+		System.out.println("Voter age: "+age);
+	}
+}
+public class MediumLevel extends ShowInfo {
+
+	public static void main(String[] args) 
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter your Age :");
-		short age = sc.nextShort();
-		Student student = new Student();
-		student.setAge(age);
-		student.setGrade(10);
-		student.promote();
+		System.out.println("Enter your Name");
+		name = sc.nextLine();
+		System.out.println("Enter your Age");
+		age = sc.nextInt();
+		try
+		{
+			registerVote(name,age);
+		}
+		catch(InvalidVoteException e)
+		{
+			System.out.println("Reason :"+e);
+		}
+		showDetailsOfVoter();
 	}
 
 }
