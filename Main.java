@@ -1,76 +1,25 @@
-package Abstration;
-abstract class Car
-{
-	int carId;
-	char Name;
-	char brand;
-	Car(int carId,char Name,char brand)
-	{
-		this.carId=carId;
-		this.Name=Name;
-		this.brand=brand;
-	}
-	abstract void start();
-	abstract void stop();
-	abstract void acc();
-}
-class Suv extends Car
-{
-	Suv(int carId,char Name,char brand)
-	{
-		super(carId,Name,brand);
-		System.out.println("CarId"+carId);
-		System.out.println("Car name"+Name);
-		System.out.println("Car brand"+brand);
-	}
-	void start()
-	{
-		System.out.println("Engine Stared ");
-	}
-	void stop()
-	{
-		System.out.println("Engine Stoped ");
-	}
-	void acc()
-	{
-		System.out.println("Engine Started to accelerating ");
-	}
-}
-class Sedan extends Car
-{
+package BasicOperation;
+import java.util.Arrays;
 
-	Sedan(int carId, char Name, char brand) 
-	{
-		super(carId, Name, brand);
-		System.out.println("CarId"+carId);
-		System.out.println("Car name"+Name);
-		System.out.println("Car brand"+brand);
-	}
-	void start()
-	{
-		System.out.println("Engine Stared ");
-	}
-	void stop()
-	{
-		System.out.println("Engine Stoped ");
-	}
-	void acc()
-	{
-		System.out.println("Engine Started to accelerating ");
-	}
-}
-class Main
-{
-	public static void main(String args[])
-	{
-		 Car suv = new Suv(1202,'E','H');
-		 suv.start();
-		 suv.stop();
-		 suv.acc();
-		 System.out.println();
-		 Car sedan = new Sedan(1256,'m','s');
-		 sedan.start();
-		 sedan.stop();
-		 sedan.acc();
-	}
+public class Main {
+    public static void main(String[] args) {
+        int[] initialArray = new int[10]; // Let's assume you have an initial array of size 5
+        Array arrayObject = new Array(initialArray);
+
+        // Insert elements into the array
+        arrayObject.insert(10);
+        arrayObject.insert(20);
+        arrayObject.insert(30);
+        arrayObject.insert(40);
+        arrayObject.insert(50);
+        System.out.println("length: "+arrayObject.length);
+        System.out.println("Before");
+        arrayObject.print();
+        arrayObject.insertAtIndex(2,100);
+       System.out.println( arrayObject.deleteAtIndex(1));
+       arrayObject.updateAtIndex(4,400);
+        System.out.println("\nValue at index: "+arrayObject.search(2));
+        System.out.println("After insert and deletion");
+        arrayObject.print();
+    }
 }

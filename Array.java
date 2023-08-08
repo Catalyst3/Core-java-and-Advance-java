@@ -1,61 +1,64 @@
-import java.util.Random;
+package BasicOperation;
 
 public class Array {
+   public int length = 0;
+    int[] arr;
 
-	public static void main(String[] args) 
-	{
-		int a[] = {4,8,5,6,55,89,2,75,69};
-		for (byte i=0;i<5;i++)
-		{
-			System.out.print(a[i]+",");
-		}
-		//To change element in Array
-		a[2]=10;
-		System.out.println("\n------------------------------------------------------------------------------------------------------------");
-		for (byte i=0;i<5;i++)
-		{
-			System.out.print(a[i]+",");
-		}
-		//size of array
-		int b = a.length;
-		System.out.println("\nlength of Array is: "+b);
-		//Random value From java
-		int anyValue = a[new Random().nextInt(a.length)];
-		System.out.println("Random Value is: "+anyValue);
-		//Sort array 
-		//Append new item in array
-		
-		int array1 [] = {23,45,56,87,97,68};
-		int array2 [] = {56,34,65,856,865};
-		int array3 [] = new int[array1.length+array2.length];
-		byte i;
-		for ( i=0;i<array1.length;i++)
-		{
-			array3[i]=array1[i];
-		}
-		for(i=(byte) array1.length;i<array2.length;i++)
-		{
-			for (byte j=0;j<i;j++)
-			{
-				array3[i]=array2[j];
-			}
-		}
-		System.out.println(array3);
-		for(byte i1 = 0;i1<array3.length;i1++)
-		{
-			System.out.println(array3[i1]);
-		}
-	//int [] newArray = As.copyOf(a, a.length + 1);
-		//newArray[newArray.length - 1] = newItem;
-		//Copy one Array into Another 
-		int copy[];
-		
-		/*for(int i=0;i<a.length;i++)
-		{
-			copy=System.arraycopy();
-		}*/
-		
-		
-	}
+    public Array(int[] arr) {
+        this.arr = arr;
+    }
 
+    public void insert(int element) {
+        // Check if the array is already full before inserting
+        if (length == arr.length) {
+            System.out.println("Array is already full. Cannot insert more elements.");
+            return; // Add this line to stop the insertion process
+        }
+
+        // Insert the element at the end of the array
+        arr[length] = element;
+        length++;
+    }
+    public void print()
+    {
+    	for(int i =0;i<length;i++)
+    	{
+    		System.out.print(arr[i]+",");
+    	}
+    }
+    public int search(int index)
+    {
+    	int temp = -1;
+    	temp=arr[index];
+    	return temp;
+    }
+    public void insertAtIndex(int index,int value)
+    {
+    	for(int i=length-1;i>=index;i--)
+    	{
+    		arr[i+1]=arr[i];
+    		if(i==index)	
+    		{
+    			arr[i]=value;
+    		}
+    	}
+    	length++;
+    }
+    public boolean deleteAtIndex(int index)
+    {
+    	if(index<0 || index>length) return false;
+    	for(int i=index; i<length;i++)
+    	{
+    		arr[i]=arr[i+1];
+    	}
+    	length--;
+		return true;
+    }
+    public boolean updateAtIndex(int index,int value)
+    {
+    	if(index<0 || index>length) return false;
+    	arr[index]=value;
+    	return true;
+    }
+    
 }
